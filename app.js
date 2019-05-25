@@ -20,4 +20,54 @@ app.use(bodyParser.urlencoded({
 //Signup Home
 app.get('/', (req, res) => res.sendFile(__dirname + `/signup.html`));
 
-console.log(__dirname + `/signup.html`);
+app.post('/', function (req, res) {
+
+    var firstName = req.body.fname;
+    var lastName = req.body.lname;
+    var email = req.body.email;
+
+    //Anystring(username), API key
+    var username = 'ywettai';
+    var api = 'ea68a913457fe64382795bd56b87c663-us20';
+
+    var data = {
+        members: [
+            {
+                email_address: email,
+                status: 'subscribed',
+                merge_fields: {
+                    FNAME: firstName,
+                    LNAME: lastName
+                }
+            }
+        ]
+    };
+
+    var jsonData = JSON.stringify(data);
+
+    var options = {
+        url: 'https://us20.api.mailchimp.com/3.0/lists/59d2f5519b',
+        method: 'POST',
+        headers: {
+            'Authorization': `${username} ${api}`
+        },
+        body: jsonData
+    };
+
+    request(options, function (error, response, body) {
+
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(response.statusCode);
+        }
+
+    });
+
+});
+
+//API Key
+//ea68a913457fe64382795bd56b87c663-us20
+
+//Audiance id
+//59d2f5519b
