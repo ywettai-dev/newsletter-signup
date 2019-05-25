@@ -31,16 +31,14 @@ app.post('/', function (req, res) {
     var api = 'ea68a913457fe64382795bd56b87c663-us20';
 
     var data = {
-        members: [
-            {
-                email_address: email,
-                status: 'subscribed',
-                merge_fields: {
-                    FNAME: firstName,
-                    LNAME: lastName
-                }
+        members: [{
+            email_address: email,
+            status: 'subscribed',
+            merge_fields: {
+                FNAME: firstName,
+                LNAME: lastName
             }
-        ]
+        }]
     };
 
     var jsonData = JSON.stringify(data);
@@ -57,17 +55,20 @@ app.post('/', function (req, res) {
     request(options, function (error, response, body) {
 
         if (error) {
-            console.log(error);
+
+            res.sendFile(__dirname + `/failure.html`);
+
         } else {
-            console.log(response.statusCode);
+            if (response.statusCode === 200) {
+                res.sendFile(__dirname + `/success.html`);
+            } else {
+                res.sendFile(__dirname + `/failure.html`);
+            }
         }
 
     });
 
 });
 
-//API Key
-//ea68a913457fe64382795bd56b87c663-us20
-
-//Audiance id
-//59d2f5519b
+//Failure Redirect
+app.post('/failure', (req, res) => res.redirect('/'));
