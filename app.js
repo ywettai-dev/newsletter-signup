@@ -11,7 +11,7 @@ const request = require('request');
 app.use(express.static('public/'));
 
 //Express server
-app.listen(port, () => console.log(`News-letter signup starts on ${port}`));
+app.listen(port, process.env.PORT || port);
 
 app.use(bodyParser.urlencoded({
     extended: true
