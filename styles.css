@@ -1,6 +1,10 @@
+/* Googel Fonts */
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 html,
 body {
     height: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -20,10 +24,6 @@ body {
     margin: auto;
 }
 
-.form-signin .checkbox {
-    font-weight: 400;
-}
-
 .form-signin .form-control {
     position: relative;
     box-sizing: border-box;
@@ -36,14 +36,25 @@ body {
     z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.top{
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.middle{
+    margin-bottom: -1px;
+    border-radius: 0;
+}
+
+.bottom{
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.logo-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
 }
