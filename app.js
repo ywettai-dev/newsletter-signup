@@ -11,7 +11,7 @@ const request = require('request');
 app.use(express.static('public/'));
 
 //Express server
-app.listen(port, process.env.PORT || port);
+app.listen(process.env.PORT || port, () => console.log(`Newsletter starts on ${port}`));
 
 app.use(bodyParser.urlencoded({
     extended: true
